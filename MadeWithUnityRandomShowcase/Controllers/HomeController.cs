@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using MadeWithUnityRandomShowcase.Models;
+using MadeWithUnityRandomShowcase.Repository;
+using System;
 using System.Web.Mvc;
 
 namespace MadeWithUnityRandomShowcase.Controllers
@@ -10,7 +9,9 @@ namespace MadeWithUnityRandomShowcase.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            Showcase showcase = ShowcaseRepo.GetShowcaseInfo();
+            RanGenNum rando = new RanGenNum();
+            return View(showcase);
         }
 
         public ActionResult About()
