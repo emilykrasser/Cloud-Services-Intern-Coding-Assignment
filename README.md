@@ -23,7 +23,11 @@ The requirements for this project were:
 5. Use one of the following languages: Java, Python, Ruby, Go, C# or C++
 
 How my application meets the requirements:
-1. As stated in the Overview, a Made with Unity project URL was chosen by randomly selecting an index from a list of indices that wer 
+1. As stated in the Overview, a Made with Unity project URL was chosen by randomly selecting an index from a list of numbers from 0 to the count of the URL list - 1 and then using returned index to retrieve the URL for the project. That URL was then passed into the ShowcaseRepo.GetShowcaseInfo(URL). This returned a showcase object with all the information that the Index page needed to render.
+2. Going right along with requirement number 1, the list of numbers from which a index was selected was the list of all of the project indices that the user had not yet seen. Once an index was chosen, it was removed from the list and the cache was updated. This ensured that no project was repeated until all the projects had already been seen on one pass through. 
+3. Being as the application should not contain any project specific information, I turned to the source code. There was no API to cal for the information so I used Html Agility Pack to screen scrape all of the content that I needed to render. This included the title, studio name, headings, tect, images, captions, galleries, videos, and background images.
+4. In order to minimize the user load times, I used a server-side cache to store both the project URLs as well as the unseen indices. This made it so that the main Html document for the Made with Unity site would only need to be loaded if it was null (that cache expires 30 minutes after the last access). The advantage of caching over cookies is that there is less information retrieval, therefore making it faster. If storage were more of an issue, then cookies would be a more valid option. As well, the Html document for each project is only loaded when that project is chosen.
+5. For my application, I used ASP.NET MVC since I really like programming in .NET and C#.
 
 ## Improvements for the Future
 I think that I did pretty well on this project. However, if I had more time I would like to perhaps put more effort into maintaining the original format of the project site with galleries and videos.
