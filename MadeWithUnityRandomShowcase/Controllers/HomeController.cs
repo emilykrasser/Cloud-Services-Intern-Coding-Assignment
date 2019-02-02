@@ -40,8 +40,8 @@ namespace MadeWithUnityRandomShowcase.Controllers
                     URLS.Add(i.ChildNodes[1].GetAttributeValue("href", "default"));
                 }
 
-                // Add URLS list to the cache with a sliding expriration so that it expires 30 min after the data was last accessed
-                HttpContext.Cache.Add("cachedURLs", URLS, null, Cache.NoAbsoluteExpiration, new TimeSpan(0, 30, 0), CacheItemPriority.Normal, null);
+                // Add URLS list to the cache with a sliding expriration so that it expires 8 hours after the data was last accessed
+                HttpContext.Cache.Add("cachedURLs", URLS, null, Cache.NoAbsoluteExpiration, new TimeSpan(8, 0, 0), CacheItemPriority.Normal, null);
             }
 
             cachedURLs = HttpContext.Cache.Get("cachedURLs") as List<string>;
