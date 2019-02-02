@@ -30,5 +30,6 @@ How my application meets the requirements:
 5. For my application, I used ASP.NET MVC since I really like programming in .NET and C#.
 
 ## Improvements for the Future
-I think that I did pretty well on this project. However, if I had more time I would like to perhaps put more effort into maintaining the original format of the project site with galleries and videos.
-- As for caching, the type of caching in the application would not work if the site had multiple servers
+- I would like to perhaps put more time into maintaining the original format and source of the project site with galleries and videos.
+- As for caching, the type of caching in the application would not work if the site had multiple servers. Instead a distributed cache would need to be used or maybe cookies stored client-side.
+
