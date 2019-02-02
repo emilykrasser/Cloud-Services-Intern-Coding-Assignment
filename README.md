@@ -12,10 +12,18 @@ In order to tackle this challenge, I broke down what I needed to do into smaller
 		- For the background images I had to get the whole image tag as a string and then parse of the URL. In the HTML of the Index page I loaded those absolute paths into an image tag to be displayed at the bottom of the page. The first of the images was also used as the background of each showcase's page.
 		- The videos were the last part of the project that I needed to finish and they were the most confusing part since I didn't immediately realize that the video url data was stored in one of the div elements as attributes and had to look at the network calls that were made from those elements. Once I realized that, it was easy enough to set the full link and then embed the video for YouTube and Vimeo.
 2. The second part of the project was selecting a random project to show until all the projects had been shown and then repeating this process. I did this by creating a list of numbers that were the indices of the projects that the user had not already seen. I cached these server-side like the URLs. To retrieve an index, a random number was generated within the size of the list of unseen indices and then the corresponding number was returned as well as removed from the cache. Once the cache was depleated, it was refilled and the process continued on.
-3. The last bit of the project was just polishing and making it look pretty with some simple Html. Thanks to [Html Agility Pack](https://html-agility-pack.net) I was able to preserve a fair amount of original source code from the project website which I could easily format in the Index page.
+3. The last bit of the project was just polishing and making it look pretty with some simple Html. Thanks to Html Agility Pack I was able to preserve a fair amount of original source code from the project website which I could easily format in the Index page.
 
 ## How the Design Meets the Requirements
-The application that I built for this challenge meets the requirements 
+The requirements for this project were:
+1. A different project must be rendered every time the page is refreshed
+2. No project should be repeated until all projects have been viewed by that user
+3. The application should contain no content specific to any one game, all discovery and content retrieval should be done through external sources like the Made With Unity showcase
+4. User load times and web app network bandwidth usage should be minimized
+5. Use one of the following languages: Java, Python, Ruby, Go, C# or C++
+
+How my application meets the requirements:
+1. As stated in the Overview, a Made with Unity project URL was chosen by randomly selecting an index from a list of indices that wer 
 
 ## Improvements for the Future
 I think that I did pretty well on this project. However, if I had more time I would like to perhaps put more effort into maintaining the original format of the project site with galleries and videos.
