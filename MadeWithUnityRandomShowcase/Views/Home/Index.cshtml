@@ -26,6 +26,13 @@
         width: 100%;
     }
 
+    .video {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 99%;
+    }
+
     .backdrop {
         display: block;
         margin-left: auto;
@@ -36,35 +43,51 @@
     .gallery-image {
         width: 99%;
     }
+
+    .component-gallery-item img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 99%;
+    }
 </style>
 
 <body>
     <div class="start-space"></div>
 
-<div class="jumbotron">
-    @foreach (var item in Model.mainShowcase)
-    {
-        <p class="lead">
-            @Html.Raw(item)
-        </p>
-    }
+    <div class="jumbotron">
+        @foreach (var item in Model.mainShowcase)
+        {
+            <p class="lead">
+                @Html.Raw(item)
+            </p>
+        }
 
-    @foreach (var item in Model.videoURLsShowcase)
-    {
-        <iframe width="420" height="315" src="@Html.Raw(item)"></iframe>
-    }
+        @foreach (var item in Model.videoURLsShowcase)
+        {
+            <div class="component-gallery-item">
+                <iframe src="@Html.Raw(item)" width="640" height="360" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" class="video"></iframe>
+            </div>
+        }
 
-    @foreach (var item in Model.galleryShowcase)
-    {
-        <p class="gallery">
-            @Html.Raw(item)
-        </p>
-    }
+        @foreach (var item in Model.galleryShowcase)
+        {
+            <p class="gallery">
+                @Html.Raw(item)
+            </p>
+        }
 
-    @foreach (var item in Model.backdropURLsShowcase)
-    {
-        <img src="@Html.Raw(item)" class="backdrop" />
-    }
-    <p><a href="https://unity.com/madewith" class="btn btn-primary btn-lg">Made with Unity &raquo;</a></p>
-</div>
+        @foreach (var item in Model.componentGalleryShowcase)
+        {
+            <p class="gallery">
+                @Html.Raw(item)
+            </p>
+        }
+
+        @foreach (var item in Model.backdropURLsShowcase)
+        {
+            <img src="@Html.Raw(item)" class="backdrop" />
+        }
+        <p><a href="https://unity.com/madewith" class="btn btn-primary btn-lg">Made with Unity &raquo;</a></p>
+    </div>
 </body>

@@ -13,14 +13,13 @@ namespace MadeWithUnityRandomShowcase.Controllers
     public class HomeController : Controller
     {
         /// <summary>
-        /// Finding and adding the URLs for the Made with Unity Projects to a list
+        /// Finds and adding the URLs for the Made with Unity Projects to a cached list
         /// </summary>
-        /// <returns></returns>
         List<string> GetShowcaseURLS()
         {
             List<string> cachedURLs = HttpContext.Cache.Get("cachedURLs") as List<string>;
 
-            if (HttpContext.Cache["cachedURLs"] == null || cachedURLs.Count == 0)
+            if (HttpContext.Cache.Get("cachedURLs") == null || cachedURLs.Count == 0)
             {
                 List<string> URLS = new List<string>();
 
@@ -41,7 +40,8 @@ namespace MadeWithUnityRandomShowcase.Controllers
                     URLS.Add(i.ChildNodes[1].GetAttributeValue("href", "default"));
                 }
 
-                HttpContext.Cache["cachedURLs"] = URLS;
+                // Add URLS list to the cache with a sliding expriration so that it expires 30 min after the data was last accessed
+                HttpContext.Cache.Add("cachedURLs", URLS, null, Cache.NoAbsoluteExpiration, new TimeSpan(0, 30, 0), CacheItemPriority.Normal, null);
             }
 
             cachedURLs = HttpContext.Cache.Get("cachedURLs") as List<string>;
@@ -49,11 +49,14 @@ namespace MadeWithUnityRandomShowcase.Controllers
             return cachedURLs;
         }
 
+        /// <summary>
+        /// Retrieves random index from cached list of unseen indices
+        /// </summary>
         int GetURLIndicies(int numOfURLs)
         {
             List<int> cachedIndices = HttpContext.Cache.Get("unseenIndices") as List<int>;
 
-            if (HttpContext.Cache["unseenIndices"] == null || cachedIndices.Count == 0)
+            if (HttpContext.Cache.Get("unseenIndices") == null || cachedIndices.Count == 0)
             {
                 List<int> indexArr = new List<int>();
                 for (int i = 0; i < numOfURLs; i++)
@@ -61,6 +64,7 @@ namespace MadeWithUnityRandomShowcase.Controllers
                     indexArr.Add(i);
                 }
 
+                // No need to set a sliding expiration here since we reset the cache later
                 HttpContext.Cache["unseenIndices"] = indexArr;
             }
 
@@ -69,9 +73,10 @@ namespace MadeWithUnityRandomShowcase.Controllers
             int randNum = rand.Next(0, cachedIndices.Count); // Index for the indices
 
             int randIndex = cachedIndices[randNum]; // Final random index for URLs
-            cachedIndices.RemoveAt(randNum); // Removing from list of seen indices
+            cachedIndices.RemoveAt(randNum); // Removing from list of unseen indices
 
-            HttpContext.Cache["unseenIndices"] = cachedIndices; // Reseting the cached list with the updated list
+            // Reseting the cached list with the updated list and a sliding expriration so that it expires 12 hours after the data was last accessed
+            HttpContext.Cache.Add("cachedURLs", cachedIndices, null, Cache.NoAbsoluteExpiration, new TimeSpan(12, 0, 0), CacheItemPriority.Normal, null);
 
             return randIndex;
         }
@@ -83,20 +88,6 @@ namespace MadeWithUnityRandomShowcase.Controllers
 
             Showcase showcase = ShowcaseRepo.GetShowcaseInfo(urls[URLIndex]);
             return View(showcase);
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
         }
     }
 }

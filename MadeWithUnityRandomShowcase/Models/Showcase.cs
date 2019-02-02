@@ -12,6 +12,7 @@ namespace MadeWithUnityRandomShowcase.Models
         public List<string>
             mainShowcase,
             galleryShowcase,
+            componentGalleryShowcase,
             backdropURLsShowcase,
             videoURLsShowcase;
 
@@ -19,6 +20,7 @@ namespace MadeWithUnityRandomShowcase.Models
         {
             mainShowcase = new List<string>();
             galleryShowcase = new List<string>();
+            componentGalleryShowcase = new List<string>();
             backdropURLsShowcase = new List<string>();
             videoURLsShowcase = new List<string>();
         }
