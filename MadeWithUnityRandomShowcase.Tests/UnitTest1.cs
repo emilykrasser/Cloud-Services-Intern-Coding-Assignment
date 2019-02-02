@@ -21,13 +21,33 @@ namespace MadeWithUnityRandomShowcase.Tests
             Assert.IsNotNull(actual);
         }
 
+        /// <summary>
+        /// Using this test to step through GetShowcaseInfo() 
+        /// as well as view HtmlAgilityPack nodes and their attributes
+        /// </summary>
         [TestMethod]
         public void Test_GetShowCaseInfo()
         {
             // arrange
 
             // act
-            var actual = ShowcaseRepo.GetShowcaseInfo();
+            var actual = ShowcaseRepo.GetShowcaseInfo("/madewith/hollow-knight");
+
+            // assert
+
+        }
+
+        /// <summary>
+        /// Using this test to step through GetShowcaseInfo() 
+        /// as well as view HtmlAgilityPack nodes and their attributes
+        /// </summary>
+        [TestMethod]
+        public void Test_GetShowCaseInfo2()
+        {
+            // arrange
+
+            // act
+            var actual = ShowcaseRepo.GetShowcaseInfo("/madewith/praey-for-the-gods");
 
             // assert
 

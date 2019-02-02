@@ -9,22 +9,18 @@ namespace MadeWithUnityRandomShowcase.Models
     {
         public string showcaseTitle, showcaseStudio;
 
-        public List<string> 
-            showcaseHeadings, 
-            showcaseText,
-            showcaseImages,
-            showcaseCaptions,
-            showcaseVideos,
-            showcaseURLS;
+        public List<string>
+            mainShowcase,
+            galleryShowcase,
+            backdropURLsShowcase,
+            videoURLsShowcase;
 
         public Showcase()
         {
-            showcaseHeadings = new List<string>();
-            showcaseText = new List<string>();
-            showcaseImages = new List<string>();
-            showcaseCaptions = new List<string>();
-            showcaseVideos = new List<string>();
-            showcaseURLS = new List<string>();
+            mainShowcase = new List<string>();
+            galleryShowcase = new List<string>();
+            backdropURLsShowcase = new List<string>();
+            videoURLsShowcase = new List<string>();
         }
     }
 }

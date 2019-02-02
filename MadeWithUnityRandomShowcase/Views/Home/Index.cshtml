@@ -4,43 +4,67 @@
     ViewBag.Title = "Made in Unity Showcase";
 }
 
+<style>
+    body {
+        background-image: url('@Html.Raw(Model.backdropURLsShowcase[0])');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+    .start-space{
+        height: 500px;
+    }
+
+    .title-large {
+        font-size: 50px;
+        font-weight: bold;
+    }
+
+    .jumbo-backdrop {
+        width: 100%;
+    }
+
+    .backdrop {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 99%;
+    }
+
+    .gallery-image {
+        width: 99%;
+    }
+</style>
+
+<body>
+    <div class="start-space"></div>
+
 <div class="jumbotron">
-    <h1>
-        @Html.DisplayFor(model => model.showcaseTitle)
-    </h1>
-
-    <h3>
-        @Html.DisplayFor(model => model.showcaseStudio)
-    </h3>
-
-    @foreach (var item in Model.showcaseText)
+    @foreach (var item in Model.mainShowcase)
     {
         <p class="lead">
-            @Html.DisplayFor(model => item)
+            @Html.Raw(item)
         </p>
     }
 
+    @foreach (var item in Model.videoURLsShowcase)
+    {
+        <iframe width="420" height="315" src="@Html.Raw(item)"></iframe>
+    }
+
+    @foreach (var item in Model.galleryShowcase)
+    {
+        <p class="gallery">
+            @Html.Raw(item)
+        </p>
+    }
+
+    @foreach (var item in Model.backdropURLsShowcase)
+    {
+        <img src="@Html.Raw(item)" class="backdrop" />
+    }
     <p><a href="https://unity.com/madewith" class="btn btn-primary btn-lg">Made with Unity &raquo;</a></p>
 </div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+</body>
